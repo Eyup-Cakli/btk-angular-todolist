@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(198, 198, 198);
+  padding: 24px;
+  width: 78%;
+}
+
+.buttons {
+  display: flex;
+  justify-items: center;
+  width: 90%;
+  button {
+    justify-content: space-evenly;
+    display: flex;
+    flex-grow: 1;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+}
+
+.task-field {
+  display: flex;
+  flex-direction: row;
+  margin: 12px;
+  border: 1px solid rgb(188, 188, 188);
+  padding: 12px;
+  align-items: center;
+  width: 80%;
+}
+
+.bottom-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  button {
+    justify-content: space-evenly;
+    display: flex;
+    margin-right: 30px;
+    margin-left: 30px;
+    flex-grow: 1;
+  }
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

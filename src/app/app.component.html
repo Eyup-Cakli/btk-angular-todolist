@@ -1,0 +1,38 @@
+<div class="container">
+  <h3>Todo App</h3>
+  <div class="input-field">
+    <mat-form-field class="example-form-field">
+      <mat-icon matPrefix>event_note</mat-icon>
+      <mat-label>Clearable input</mat-label>
+      <input matInput type="text" [(ngModel)]="newTask.name" />
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="addTask()">Add</button>
+  </div>
+
+  <h3>List</h3>
+  <div class="buttons">
+    <button mat-flat-button color="primary">All</button>
+    <button mat-flat-button color="primary">Done</button>
+    <button mat-flat-button color="primary">Todo</button>
+  </div>
+
+  @for (task of taskList; track task;) {
+    <div class="task-field">
+      <div>{{task.name}}</div>
+      <div class="icons">
+        <mat-checkbox (change)="statusChange(task)" [checked]="task.status"></mat-checkbox>
+        <mat-icon style="color:#ffda22;">edit</mat-icon>
+        <mat-icon (click)="deleteTask($index)" style="color: #D9534E;">delete</mat-icon>
+      </div>
+    </div>
+  }
+
+  @empty(){
+    <div>Liste Boş</div>
+  }
+
+  <div class="bottom-buttons">
+    <button mat-flat-button color="warn" (click)="deleteDoneTasks()">Delete Done Tasks</button>
+    <button mat-flat-button color="warn">Delete All Tasks</button>
+  </div>
+</div>
