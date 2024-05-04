@@ -11,9 +11,9 @@
 
   <h3>List</h3>
   <div class="buttons">
-    <button mat-flat-button color="primary">All</button>
-    <button mat-flat-button color="primary">Done</button>
-    <button mat-flat-button color="primary">Todo</button>
+    <button mat-flat-button color="primary" (click)="getAll()">All</button>
+    <button mat-flat-button color="primary" (click)="getStatusDone()">Done</button>
+    <button mat-flat-button color="primary" (click)="getStatusNotDone()">Todo</button>
   </div>
 
   @for (task of taskList; track task;) {
@@ -33,6 +33,6 @@
 
   <div class="bottom-buttons">
     <button mat-flat-button color="warn" (click)="deleteDoneTasks()">Delete Done Tasks</button>
-    <button mat-flat-button color="warn">Delete All Tasks</button>
+    <button mat-flat-button color="warn" (click)="deleteAllTasks()">Delete All Tasks</button>
   </div>
 </div>
