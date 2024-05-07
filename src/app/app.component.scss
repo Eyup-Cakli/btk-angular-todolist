@@ -18,13 +18,11 @@
 .buttons {
   display: flex;
   justify-items: center;
-  width: 90%;
+  width: 82%;
   button {
     justify-content: space-evenly;
     display: flex;
     flex-grow: 1;
-    margin-right: 30px;
-    margin-left: 30px;
   }
 }
 
@@ -41,12 +39,10 @@
 .bottom-buttons {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 82%;
   button {
     justify-content: space-evenly;
     display: flex;
-    margin-right: 30px;
-    margin-left: 30px;
     flex-grow: 1;
   }
 }

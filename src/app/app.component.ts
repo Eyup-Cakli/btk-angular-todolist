@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     FormsModule,
     MatCheckboxModule,
+    MatFormFieldModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -25,13 +27,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 export class AppComponent {
   title = 'todo-list';
   taskList: TaskModel[] = [];
-  newTask: TaskModel = { name: '', status: false };
-  filteredData: TaskModel[] = [];
+  viewList: TaskModel[] = [];
+  newTask: TaskModel = { name: "", status: false };
+  isEditMode: boolean = true;
+  selectedIndex: number = 0;
 
   addTask() {
-    this.taskList.push({ ...this.newTask });
-    this.filteredData.push({ ...this.newTask });
-    this.newTask.name = '';
+    this.taskList.push({...this.newTask});
+    this.newTask.name = "";
+    this.viewList = this.taskList;
   }
 
   deleteTask(index: number) {
@@ -43,27 +47,36 @@ export class AppComponent {
   }
 
   deleteDoneTasks() {
-    this.taskList = this.taskList.filter((task) => !task.status);
+    this.taskList = this.taskList.filter((data) => !data.status);
+    this.viewList = this.viewList.filter((data) => !data.status);
   }
+
   deleteAllTasks() {
     this.taskList = [];
+    this.viewList = [];
   }
 
   getStatusDone() {
-    const statusDoneData = this.taskList.filter((data) => data.status);
-    this.taskList = statusDoneData;
-    console.log(statusDoneData);
+    this.viewList = []
+    this.viewList = this.taskList.filter((data) => data.status);
+    return this.viewList;
   }
 
   getStatusNotDone() {
-    const statusNotDoneData = this.taskList.filter((data) => !data.status);
-    this.taskList = statusNotDoneData;
+    this.viewList = []
+    this.viewList = this.taskList.filter((data) => !data.status);
+    return this.viewList;
   }
 
   getAll() {
-    const tasks = this.taskList.filter((data) => data);
-    this.taskList = tasks;
-    console.log(tasks);
+    this.viewList = [];
+    this.viewList = this.taskList;
+    return this.viewList;
+  }
+
+  editTask(index: number) {
+    this.isEditMode = true;
+    this.selectedIndex = index;
   }
 }
 

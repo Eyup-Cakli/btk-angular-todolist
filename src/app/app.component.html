@@ -12,16 +12,24 @@
   <h3>List</h3>
   <div class="buttons">
     <button mat-flat-button color="primary" (click)="getAll()">All</button>
-    <button mat-flat-button color="primary" (click)="getStatusDone()">Done</button>
+    <button mat-flat-button color="primary" style="margin-right: 30px; margin-left: 30px;" (click)="getStatusDone()">Done</button>
     <button mat-flat-button color="primary" (click)="getStatusNotDone()">Todo</button>
   </div>
 
-  @for (task of taskList; track task;) {
+  @for (task of viewList; track task;) {
     <div class="task-field">
+      @if(isEditMode && selectedIndex)
+      {
+      <mat-form-field>
+          <mat-label>
+            <input matInput type="text" [(ngModel)]="newTask.name" />
+          </mat-label>
+        </mat-form-field>
+      }
       <div>{{task.name}}</div>
       <div class="icons">
         <mat-checkbox (change)="statusChange(task)" [checked]="task.status"></mat-checkbox>
-        <mat-icon style="color:#ffda22;">edit</mat-icon>
+        <mat-icon (click)="editTask($index)" style="color:#ffda22;">edit</mat-icon>
         <mat-icon (click)="deleteTask($index)" style="color: #D9534E;">delete</mat-icon>
       </div>
     </div>
@@ -32,7 +40,7 @@
   }
 
   <div class="bottom-buttons">
-    <button mat-flat-button color="warn" (click)="deleteDoneTasks()">Delete Done Tasks</button>
-    <button mat-flat-button color="warn" (click)="deleteAllTasks()">Delete All Tasks</button>
+    <button mat-flat-button color="warn" (click)="deleteDoneTasks()" style="margin-right: 15px;">Delete Done Tasks</button>
+    <button mat-flat-button color="warn" (click)="deleteAllTasks()" style="margin-left: 15px;">Delete All Tasks</button>
   </div>
 </div>
